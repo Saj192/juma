@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scholastica A. Juma</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #e0bbff, #ffc0cb, #ffffff);
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+      line-height: 1.6;
+    }
+
+    body.dark-theme {
+      background: #1a1a2e;
+      color: #eee;
+    }
+
+    header {
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .settings {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 3;
+    }
+
+    .settings button {
+      background: #f3f3f3;
+      border: 1px solid #ccc;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .settings button:hover {
+      background: #ddd;
+    }
+
+    body.dark-theme .settings button {
+      background: #333;
+      color: #fff;
+      border: 1px solid #666;
+    }
+
+    header h1 {
+      font-size: 4.5rem;
+      background: linear-gradient(to right, red, hotpink);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      z-index: 1;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    header h1 span {
+      font-size: 6rem;
+    }
+
+    .sub-title {
+      position: absolute;
+      top: 70%;
+      font-size: 2rem;
+      font-style: italic;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .profile-pic {
+      position: absolute;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(to right, red, pink);
+      padding: 8px;
+    }
+
+    .profile-pic-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid #fff;
+    }
+
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .container {
+      padding: 2em;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section {
+      margin-bottom: 2em;
+    }
+
+    h2 {
+      margin-bottom: 0.5em;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 0.3em;
+    }
+
+    .projects img,
+    .gallery img {
+      width: 100%;
+      max-width: 300px;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    form label {
+      display: block;
+      margin-top: 1em;
+      font-weight: bold;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 0.5em;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    form button {
+      margin-top: 1em;
+      padding: 10px 20px;
+      background: hotpink;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .socials {
+      border: 5px double hotpink;
+      padding: 1.5em;
+      border-radius: 15px;
+      margin-top: 2em;
+      text-align: center;
+      background: #fff0f5;
+    }
+
+    body.dark-theme .socials {
+      background: #2a2a3d;
+      border-color: #ff69b4;
+    }
+
+    .socials a {
+      margin: 0.5em;
+      display: inline-block;
+      color: #e91e63;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: transform 0.2s, color 0.2s;
+    }
+
+    .socials a i {
+      margin-right: 8px;
+    }
+
+    .socials a:hover {
+      color: #d81b60;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1em;
+      font-size: 1.4rem;
+      background: linear-gradient(to right, purple, hotpink);
+      color: #fff;
+    }
+
+    footer marquee {
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .pop-up-statements {
+      display: none;
+      font-size: 1.8rem;
+      font-style: italic;
+      font-weight: bold;
+      color: pink;
+      margin-top: 1em;
+      text-align: center;
+    }
+
+    .pop-up-statements.active {
+      display: block;
+    }
+
+    .btn-container {
+      margin-top: 2em;
+      text-align: center;
+    }
+
+    .btn-container button {
+      padding: 12px 20px;
+      background: hotpink;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    .btn-container button:hover {
+      background-color: #ff69b4;
+    }
+  </style>
+</head>
+<body>
+  <script>alert('Welcome to my Portfolio!');</script>
+
+  <header>
+    <div class="settings">
+      <button onclick="toggleTheme()">Toggle Dark Theme</button>
+    </div>
+    <h1><span>S</span>cholastica A. Juma</h1>
+    <div class="sub-title">Web Developer / Frontend / Backend / Full Stack</div>
+    <div class="profile-pic">
+      <div class="profile-pic-inner">
+        <img src="https://source.unsplash.com/random/200x200/?portrait" alt="Profile Picture">
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <section id="about">
+      <h2>About Me</h2>
+      <p>Hello, I'm Scholastica A. Juma. I'm passionate about software development, both frontend and backend. I enjoy creating impactful and user-friendly solutions.</p>
+
+      <div class="pop-up-statements" id="statement1">I am a Web Developer.</div>
+      <div class="pop-up-statements" id="statement2">I am an Artist.</div>
+      <div class="pop-up-statements" id="statement3">I am a Backend Developer.</div>
+      <div class="pop-up-statements" id="statement4">I am a Frontend Developer.</div>
+      <div class="pop-up-statements" id="statement5">I am a YouTuber.</div>
+      <div class="pop-up-statements" id="statement6">I am a Writer.</div>
+
+      <div class="btn-container">
+        <button onclick="downloadCV()">Download CV</button>
+        <button onclick="hireMe()">Hire Me</button>
+      </div>
+    </section>
+
+    <section id="projects" class="projects">
+      <h2>Projects</h2>
+      <img src="https://source.unsplash.com/random/300x200/?code" alt="Project 1">
+      <img src="https://source.unsplash.com/random/300x200/?app" alt="Project 2">
+      <img src="https://source.unsplash.com/random/300x200/?web" alt="Project 3">
+    </section>
+
+    <section id="gallery" class="gallery">
+      <h2>Gallery</h2>
+      <img src="https://source.unsplash.com/random/300x200/?tech" alt="Gallery Image 1">
+      <img src="https://source.unsplash.com/random/300x200/?developer" alt="Gallery Image 2">
+      <img src="https://source.unsplash.com/random/300x200/?laptop" alt="Gallery Image 3">
+    </section>
+
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <p>Email: <a href="mailto:scholastica@example.com">scholastica@example.com</a></p>
+      <p>Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
+      <form>
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Your Name" required>
+        
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Your Email" required>
+        
+        <label for="telephone">Telephone</label>
+        <input type="tel" id="telephone" placeholder="Your Telephone">
+
+        <label for="location">Location</label>
+        <input type="text" id="location" placeholder="City / Country">
+
+        <label for="address">Address</label>
+        <textarea id="address" rows="3" placeholder="Your Address"></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <section class="socials">
+      <h2>Connect With Me</h2>
+      <a href="#"><i class="fab fa-tiktok"></i>TikTok</a>
+      <a href="#"><i class="fab fa-instagram"></i>Instagram</a>
+      <a href="#"><i class="fab fa-facebook-f"></i>Facebook</a>
+      <a href="#"><i class="fab fa-linkedin-in"></i>LinkedIn</a>
+      <a href="#"><i class="fab fa-github"></i>GitHub</a>
+      <a href="#"><i class="fab fa-x-twitter"></i>Twitter/X</a>
+      <a href="#"><i class="fab fa-quora"></i>Quora</a>
+      <a href="#"><i class="fab fa-pinterest-p"></i>Pinterest</a>
+    </section>
+
+    <section id="resume">
+      <h2>Resume</h2>
+      <a href="resume.pdf" download>Download My Resume</a>
+    </section>
+  </div>
+
+  <footer>
+    <marquee behavior="scroll" direction="left">Welcome to my Portfolio!</marquee>
+    &copy; 2025 Scholastica A. Juma — All Rights Reserved.
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark-theme');
+    }
+
+    let statementIndex = 1;
+    function showNextStatement() {
+      const statements = document.querySelectorAll('.pop-up-statements');
+      statements.forEach((statement) => {
+        statement.classList.remove('active');
+      });
+      statements[(statementIndex - 1) % statements.length].classList.add('active');
+      statementIndex++;
+    }
+
+    setInterval(showNextStatement, 2000);
+
+    function downloadCV() {
+      window.location.href = 'resume.pdf';
+    }
+
+    function hireMe() {
+      alert("Let's work together! Contact me via the form below.");
+    }
+  </script>
+</body>
+</html>
